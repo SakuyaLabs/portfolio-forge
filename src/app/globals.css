@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+/* FORGE デザインシステム（企画書 Phase 2 / CLAUDE.md 準拠）
+   コンセプト：本気・伴走・確かな結果 */
+@theme {
+  /* カラー：Primary(鉄黒) / Secondary(クリーンホワイト) / Accent(鍛造の炎) */
+  --color-iron: #141414;
+  --color-iron-800: #1e1e1e;
+  --color-iron-700: #2a2a2a;
+  --color-iron-600: #3d3d3d;
+  --color-iron-400: #6b6b6b;
+  --color-white-clean: #f5f4f1;
+  --color-white-dim: #e4e2dc;
+  --color-white-soft: #faf9f7;
+  --color-flame: #ff4a26;
+  --color-flame-soft: #ff7a5c;
+  /* 明背景(white-clean/white-soft)でテキストとして使うと#ff4a26はWCAG AAの4.5:1未達(実測比 約2.9)になるため、
+     最初から明背景専用に暗くしたシェードを用意する（②MARUMI Phase 5の反省点を踏まえた対応）。 */
+  --color-flame-deep: #b8340f;
+
+  /* タイポグラフィ */
+  --font-anton: var(--font-anton-google), sans-serif;
+  --font-mplus: var(--font-mplus-1p), sans-serif;
+  --font-sans-jp: var(--font-noto-sans-jp), sans-serif;
+
+  /* 余白：8pxグリッド基準、セクション間 64px(デスクトップ)/40px(モバイル)。①②よりタイトにテンポ良く */
+  --spacing-section: 4rem;
+  --spacing-section-mobile: 2.5rem;
+
+  /* 間を置かず素早く立ち上がるイージング（①NAGIの「間」、②MARUMIの「活気」よりさらに前のめり） */
+  --ease-drive: cubic-bezier(0.12, 0.7, 0.25, 1);
+}
+
+:root {
+  --background: var(--color-white-clean);
+  --foreground: var(--color-iron);
+}
+
+* {
+  border-color: var(--color-iron-600);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans-jp);
+}
+
+/* 全インタラクティブ要素のフォーカスリング */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--color-flame);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
