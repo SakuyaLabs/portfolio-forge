@@ -1,6 +1,7 @@
 import Difference from "@/components/difference/Difference";
 import Empathy from "@/components/empathy/Empathy";
 import Hero from "@/components/hero/Hero";
+import Trainers from "@/components/trainers/Trainers";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <Empathy />
       <Difference />
+      <Trainers />
     </main>
   );
 }
