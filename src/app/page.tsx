@@ -4,6 +4,7 @@ import Hero from "@/components/hero/Hero";
 import Pricing from "@/components/pricing/Pricing";
 import Results from "@/components/results/Results";
 import Trainers from "@/components/trainers/Trainers";
+import Voice from "@/components/voice/Voice";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Trainers />
       <Results />
       <Pricing />
+      <Voice />
     </main>
   );
 }
