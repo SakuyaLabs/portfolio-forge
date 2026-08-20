@@ -59,5 +59,36 @@
 - ①②と同様、フッター相当のセクション（FinalCTA直後）に `Concept Project by SakuyaLabs` を常時表示する。
 - 無料体験申込フォーム送信前後にも「これはポートフォリオ用のデモ申込です」旨を明示する。
 
-## 未確定・今後の判断事項
-- トレーナー紹介の人数・プロフィール内容、実績数字の具体値、お客様の声の件数は実装時に決定する。
+## 未確定・今後の判断事項（解決済み）
+- トレーナー紹介：3名（未経験者専門・減量特化・怪我復帰サポート）で決定（`src/components/trainers/trainersData.ts`）。
+- 実績数字：会員継続率94%・平均減量値-6.2kg/12週間・指導実績1,200名+で決定（`src/components/results/ResultsStats.tsx`）。減量ペースはいずれも週0.5〜0.6kg程度に収め、誇張した数値にならないよう配慮した。
+- お客様の声：3件で決定（`src/components/voice/voiceData.ts`）。
+
+## Phase 5｜品質チェックの記録
+
+### レスポンシブ
+Chromeで実施。実測できたのは1568px〜1920px幅のみ（自動化ツールの`resize_window`がこのセッションでは
+機能せず、②MARUMIで実測できた約500px幅の再現もできなかった）。ただし、Tailwindのブレークポイントは
+`sm`(640px)/`lg`(1024px)ともにデフォルト値のままカスタム変更しておらず、複数列グリッドはすべて
+`grid-cols-1`をベースに`sm:grid-cols-3`等で拡張する実装（`grep`で全箇所確認済み）、DifferenceTableの
+唯一の`min-w-[560px]`要素も`overflow-x-auto`でラップ済みのため、狭い画面でも崩れずスクロール表示される
+設計になっている。②MARUMIで同一パターンを375px相当の実測幅で確認済みであることからも、問題ないと判断した。
+
+### アクセシビリティ
+Lighthouse Accessibility: **100/100**（初回計測から100）。②MARUMIのPhase 5で判明した「明るい背景での
+アクセントカラーのコントラスト比未達」の反省を踏まえ、本案件では実装着手前に配色ペアごとのコントラスト比を
+計算し、暗背景用(`--color-flame`)と明背景用(`--color-flame-deep`)のトークンを最初から分けて設計したため、
+今回は実装後の一括修正が発生しなかった。
+
+### パフォーマンス
+Lighthouse Performance: **100/100**（`--throttling-method=provided`で計測、FCP 0.1s / LCP 0.8s / CLS 0）。
+デフォルトのシミュレーションスロットリングは使わず、①②のPhase 5で確立した実測ベースの計測方法
+（SakuyaLabs External Intelligence `PAT-004`）に最初から従った。
+
+### SEO
+Lighthouse SEO: **60/100**。唯一の失敗項目は`is-crawlable`で、①②と同じく意図的な設定
+（`robots: { index: false, follow: false }`）。それ以外（メタ情報、OGP画像の自動生成`opengraph-image.tsx`、
+構造化データ`ExerciseGym`、見出し階層）はすべて実装済み。
+
+### Best Practices
+Lighthouse Best Practices: **100/100**。
