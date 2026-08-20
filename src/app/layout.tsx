@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Anton, M_PLUS_1p, Noto_Sans_JP } from "next/font/google";
+import Footer from "@/components/footer/Footer";
 import "./globals.css";
 
 const anton = Anton({
@@ -54,7 +55,10 @@ export default function RootLayout({
       lang="ja"
       className={`${anton.variable} ${mplus1p.variable} ${notoSansJP.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-white-clean text-iron">{children}</body>
+      <body className="min-h-full flex flex-col bg-white-clean text-iron">
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
