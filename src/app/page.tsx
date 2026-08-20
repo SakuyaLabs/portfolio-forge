@@ -1,6 +1,7 @@
 import Difference from "@/components/difference/Difference";
 import Empathy from "@/components/empathy/Empathy";
 import Hero from "@/components/hero/Hero";
+import Pricing from "@/components/pricing/Pricing";
 import Results from "@/components/results/Results";
 import Trainers from "@/components/trainers/Trainers";
 
@@ -12,6 +13,7 @@ export default function Home() {
       <Difference />
       <Trainers />
       <Results />
+      <Pricing />
     </main>
   );
 }
