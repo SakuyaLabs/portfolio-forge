@@ -26,6 +26,7 @@ const notoSansJP = Noto_Sans_JP({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://forge.sakuyalabs.com"),
+  alternates: { canonical: "/" },
   title: "パーソナルジム FORGE | 無料体験実施中",
   description:
     "本気で変わりたい人の伴走者、パーソナルジムFORGE。専属トレーナーによるマンツーマン指導で、確かな結果を。まずは無料体験から。",
